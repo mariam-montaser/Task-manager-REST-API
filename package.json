@@ -1,18 +1,20 @@
 {
   "name": "task-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "Simple Authentication & Authorization System",
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
     "dev": "env-cmd -f ./config/.env nodemon src/index.js",
-    "test": "env-cmd -f ./config/test.env jest --watchAll"
+    "test": "env-cmd -f ./config/test.env jest --watchAll --testTimeout=30000",
+    "test:users": "env-cmd -f ./config/test.env jest tests/users.test.js --testTimeout=30000",
+    "test:tasks": "env-cmd -f ./config/test.env jest tests/tasks.test.js --testTimeout=30000"
   },
   "jest": {
     "testEnvironment": "node"
   },
   "keywords": [],
-  "author": "",
+  "author": "Mariam Montaser",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -23,7 +25,7 @@
     "validator": "^13.6.0"
   },
   "devDependencies": {
-    "jest": "^27.2.5",
+    "jest": "^26.0.0",
     "supertest": "^6.1.6"
   }
 }

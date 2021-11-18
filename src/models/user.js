@@ -1,4 +1,3 @@
-
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
@@ -76,7 +75,7 @@ userSchema.statics.findByCredentials = async (email, password) => {
     if(!user) {
         throw new Error('Unable to login.');
     }
-    const isMatch = bcrypt.compare(password, user.password);
+    const isMatch = await bcrypt.compare(password, user.password);
     if(!isMatch) {
         throw new Error('Unable to login.');
     }

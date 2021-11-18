@@ -8,16 +8,12 @@ const auth = require('../middlewares/auth');
 const router = express.Router();
 
 router.get('/', auth, async (req, res) => {
-
-    console.log(req.user);
     
     try {
         const user = await User.findById(req.user._id).populate('tasks').exec();
-        console.log(user);
-        console.log(user.tasks);
         res.status(200).send(user.tasks);
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         res.status(500).send();
     }
 })
@@ -38,7 +34,7 @@ router.post('/', auth, async (req, res) => {
         await task.save();
         res.status(201).send(task)
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         res.status(400).send(error)
     }
 })
@@ -56,7 +52,7 @@ router.patch('/:id', auth, async (req, res) => {
         await task.save();
         res.status(200).send(task);
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         res.status(400).send(error);
     }
 })
@@ -68,7 +64,7 @@ router.delete('/:id', auth, async (req, res) => {
         if(!task) return res.status(404).send()
         res.status(200).send(task)
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         res.status(500).send()
     }
 })
