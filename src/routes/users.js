@@ -5,7 +5,7 @@ const auth = require('../middlewares/auth');
 
 const router = express.Router();
 
-
+// register 
 router.post('/', async (req, res) => {
     const user = new User(req.body);
     try {
@@ -19,6 +19,7 @@ router.post('/', async (req, res) => {
 })
 
 
+// login user
 router.post('/login', async (req, res) => {
 
     try {
@@ -26,12 +27,13 @@ router.post('/login', async (req, res) => {
         const token = await user.generateToken()
         res.status(200).send({user, token});
     } catch (error) {
-        // console.log(error);
+        console.log(error);
         res.status(400).send('Invalid Email or Password.')
     }
 })
 
 
+// logout
 router.post('/logout', auth, async (req, res) => {
     try {
         req.user.tokens = req.user.tokens.filter(token => token.token !== req.token);
@@ -43,6 +45,7 @@ router.post('/logout', auth, async (req, res) => {
 })
 
 
+// logout from all devices
 router.post('/logoutAll', auth, async (req, res) => {
     try {
         req.user.tokens = [];
@@ -54,6 +57,7 @@ router.post('/logoutAll', auth, async (req, res) => {
 })
 
 
+// edit user data
 router.patch('/', auth, async (req, res) => {
     const updates = Object.keys(req.body);
     const allowedUpdates = ['password', 'email'];
@@ -70,6 +74,7 @@ router.patch('/', auth, async (req, res) => {
 })
 
 
+// delete user
 router.delete('/', auth, async (req, res) => {
     try {
         await req.user.remove();
