@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "env-cmd -f ./config/.env nodemon src/index.js",
-    "test": "env-cmd -f ./config/test.env jest --watchAll --testTimeout=30000",
-    "test:users": "env-cmd -f ./config/test.env jest tests/users.test.js --testTimeout=30000",
-    "test:tasks": "env-cmd -f ./config/test.env jest tests/tasks.test.js --testTimeout=30000"
+    "dev": "env-cmd -f ./.env nodemon src/index.js",
+    "test": "env-cmd -f ./test.env jest --watchAll --testTimeout=30000",
+    "test:users": "env-cmd -f ./test.env jest tests/users.test.js --testTimeout=30000",
+    "test:tasks": "env-cmd -f ./test.env jest tests/tasks.test.js --testTimeout=30000"
   },
   "jest": {
     "testEnvironment": "node"

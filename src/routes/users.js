@@ -14,7 +14,7 @@ router.post('/', async (req, res) => {
         res.status(201).send({user, token});
     } catch (error) {
         // console.log(error);
-        res.status(400).send()
+        res.status(400).send('Invalid Credentials.')
     }
 })
 
@@ -27,7 +27,7 @@ router.post('/login', async (req, res) => {
         res.status(200).send({user, token});
     } catch (error) {
         // console.log(error);
-        res.status(400).send()
+        res.status(400).send('Invalid Email or Password.')
     }
 })
 
@@ -38,7 +38,7 @@ router.post('/logout', auth, async (req, res) => {
         await req.user.save();
         res.status(200).send();
     } catch (error) {
-        res.status(500).send();
+        res.status(500).send('Unable to logout.');
     }
 })
 
@@ -49,7 +49,7 @@ router.post('/logoutAll', auth, async (req, res) => {
         await req.user.save();
         res.status(200).send();
     } catch (error) {
-        res.status(500).send();
+        res.status(500).send('Unable to logout.');
     }
 })
 
@@ -76,7 +76,7 @@ router.delete('/', auth, async (req, res) => {
         res.status(200).send(req.user)
     } catch (error) {
         // console.log(error);
-        res.status(500).send()
+        res.status(500).send('Unable to Delete user.')
     }
 })
 

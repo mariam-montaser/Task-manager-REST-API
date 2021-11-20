@@ -9,6 +9,10 @@ const app = express();
 
 app.use(express.json());
 
+app.get('/', (req, res) => {
+    res.send('Welcome to Task App.');
+})
+
 app.use('/users', usersRouter);
 app.use('/tasks', tasksRouter);
 

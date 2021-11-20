@@ -9,7 +9,7 @@ const auth = async (req, res, next) => {
         const decoded = jwt.verify(token, process.env.jwtSecret);
         const user = await User.findOne({_id: decoded._id, 'tokens.token': token});
 
-        if(!user) throw new Error();
+        if(!user) throw new Error('Not Authorized.');
 
         req.token = token;
         req.user = user;
